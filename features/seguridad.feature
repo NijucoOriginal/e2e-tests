@@ -18,9 +18,22 @@ Característica: Seguridad y control de acceso
     Entonces la respuesta debe tener código 403
 
   # ── ESCENARIO 3 ──────────────────────────────────────────────────────────────
+  # Verifica que un usuario con rol USER puede autenticarse exitosamente.
+  # El sistema debe responder con código 200 y retornar un token JWT válido.
+  # Este escenario cubre el flujo normal de autenticación para usuarios regulares.
+  @fallo-simulado
   Escenario: Usuario con rol USER puede autenticarse exitosamente
     Cuando me autentico con email "empleado@test.com" y contraseña "user123"
     Entonces la respuesta debe tener código 200
+    Y la respuesta debe contener un token
+
+  # ── ESCENARIO 3 SIMULACIÓN DE FALLO ──────────────────────────────────────────
+  # Este escenario demuestra cómo se ve un fallo descriptivo en Behave.
+  # Se modificó el código esperado de 200 a 404 para simular un fallo.
+  # Mensaje esperado: "Se esperaba código 404 pero el servidor respondió con 200"
+  Escenario: Usuario con rol USER puede autenticarse exitosamente - FALLO SIMULADO
+    Cuando me autentico con email "empleado@test.com" y contraseña "user123"
+    Entonces la respuesta debe tener código 404
     Y la respuesta debe contener un token
 
   # ── ESCENARIO 4 ──────────────────────────────────────────────────────────────
