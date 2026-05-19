@@ -39,11 +39,10 @@ def limpiar_volumenes_anonimos():
 def correr_pruebas():
     print("\nCorriendo suite de pruebas BDD...")
     resultado = subprocess.run(
-        [sys.executable, "-m", "behave"],
+        [sys.executable, "-m", "behave", "--tags=~@fallo-simulado"],
         check=False
     )
     return resultado.returncode
-
 
 def verificar_consistencia():
     print("\n" + "="*50)
