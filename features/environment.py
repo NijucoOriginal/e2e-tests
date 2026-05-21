@@ -41,6 +41,8 @@ def after_scenario(context, scenario):
     context.token         = None
     context.respuesta_api = None
     context.email_prueba  = None
+    if "onboarding" in scenario.feature.filename:
+        _limpiar_bd_pruebas()
 
 def _limpiar_offboarding_bd():
     try:
